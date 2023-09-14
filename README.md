@@ -111,6 +111,5 @@ This code effectively combines Arduino and Raspberry Pi to create a robot that c
 
 
 ## Design Decisions
-We setteled on the YF Robot chassis because it provided a robust platform to work on and featured ackermann steering mechanism. We've deigned and 3D printed some parts which were required for the optimal operation of the robot. 
 
 
