@@ -23,8 +23,6 @@ This repository contains the engineering materials, software codebase, and docum
 + `t-photos` - contains one serious and one funny photo
 + `v-photos` - contains the photos of the robot from all required directions
 + `video` - contains youtube link of the video where you can see our robot in action
-+ `others` - other essential photos
-
 ----
 ## Part 1 - Program Arrangement and Algorithm Planning:
 Imports and Libraries:
