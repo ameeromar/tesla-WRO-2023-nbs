@@ -39,8 +39,11 @@ In the setup function, the code initializes the Arduino components, such as serv
 Loop Function:
 
 The loop function continuously measures distances from ultrasonic sensors and performs obstacle avoidance.
+
+
+
 ----
-##Part 2 - Detecting Run Direction:
+## Part 2 - Detecting Run Direction:
 getDistance Function:
 
 This function is responsible for measuring distances using an ultrasonic sensor. It sends a trigger signal, calculates the time it takes for the echo signal to return, and converts this time into a distance measurement.
@@ -50,8 +53,10 @@ These functions control the robot's movements: forward, left, and right. They ad
 obstacleAvoidance Function:
 
 This function contains the logic for obstacle avoidance. It checks distances in front, left, and right of the robot and determines whether to move forward, turn left, or turn right based on safe distances and detected obstacles.
+
+
 ----
-##Part 3 - Completing the Run as Fast as Possible:
+## Part 3 - Completing the Run as Fast as Possible:
 Image Processing with Raspberry Pi:
 
 The Raspberry Pi section of the code captures frames from the camera and processes them to detect red and green objects. It uses OpenCV to perform color segmentation and find contours of these objects.
