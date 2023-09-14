@@ -1,14 +1,16 @@
-# Engineering Documentation | Team Lazy-go | Bangladesh
+# Engineering Documentation | Team Tesla | Palestine
 ----
 
-This repository contains engineering materials of Lazy-bot, a self-driven vehicle's model from Team Lazy-go, Bangladesh, participating in the WRO Future Engineers competition in the season 2022.
+This repository contains the engineering materials, software codebase, and documentation for "Tesla," our autonomous self-driving car model.Tesla is built by our Team  and its our entry into the World Robot Olympiad (WRO) for the 2023 season.
 
 ----
 
 ## Team Members:
 
-- Tausif Samin - email: <tausifsamin.dhk@gmail.com>, Discord: Ikigai#8742
-- Iqbal Samin Prithul - email: <prithul0218@gmail.com>, Discord: Prithul#3957
+- Hamed Swaiseh - email: <Hamed7710@gmail.com>
+- Ameer Omar - email: <mo858769@gmail.com>
+- Ibraheem Bishtawi - email: <bishtawi.ibrahim@gmail.com>
+- Ameed duboos - email: <ameed.dabous@gmail.com>
 
 ----
 
@@ -16,7 +18,6 @@ This repository contains engineering materials of Lazy-bot, a self-driven vehicl
 
 
 + `chassis` - this folder contains details of the chassis that we've used
-+ `models` - contains 3D Printable files designed by us
 + `schemes` - contains the electrical systems schematics 
 + `src` - contains the main programs and control software and 
 + `t-photos` - contains one serious and one funny photo
@@ -74,34 +75,21 @@ We've carefully selected the best possible parts for our robot after several hun
 
 ## Parts List
 
-+ JRC Board: An ESP32 based development board (Made in Bangladesh)
-+ Huskylens: Embedded Vision Sensor
 + Adafruit HC-SR04 Ultrasonic Sensors
-+ 12V 300RPM DC Geared Motor
-+ 9imod DS20MG Servo Motor
-+ VNH2SP30 Motor Driver
-+ MPU6050
-+ 2x MP1584 Buck Converter
-+ Pololu U3V70A Boost Converter
-+ 3S LiPo battery input through XT60 Connector
++ DC Motor
++ MG90S servo Motor
++ L298 Motor Driver
++ 12 v , ?? A Bettary
++ power bank 10k m.A
++ 2* arduino uno
++ raspberry pi 4 8gb
++ raspberry cam
++ rc car
 
 ## Design decisions
 
-+  JRC Board
-    - We're using the JRC Board as it is equipped with an ESP-32 microcontroller at a clock speed of 240Hz. This is the fastest development platform for the price currently available. As the ESP-32 is dual-core, we can run two loops simaltaneously which is very benificial. 
-    - There's a brief but impressive backsotry of the JRC Board. The abbreviation of 'JRC' is Jamilur Reza Chowdhury. Dr. Jamilur Reza Chowdhury was a Bangladeshi Civil Engineer, Professor, Researcher, and Education Advocate. He is also the pioneer of computers in Bangladesh and brought the first ever computers in Bangladesh. This board was designed and developed in the memory of Dr. Jamilur Reza Chowdhury to spread the light of IoT and hardware level electronics education to kids in Bangladesh.
-- We're using the Huskylens which is an embedded machine vision sensor based on Kendryte K210 that can recognize and track colors and objects in real-time. We're using I2C to receive tracked color position data.
-- We're using a 12V 500RPM geared motor with a modified gearbox that provides ample Torque and Speed to drive our car weiging about 900g.
-- The front Axel is being articulated by a 9imod DS20MG Servo Motor. This Servo boasts a coreless motor inside and operates at a speed of 0.09sec/60°@7.4V.
-- We've used a VNH2SP30 Motor driver replacing a TB6612FNG because of lack of current. VNH2SP30 has no problems communicating with the 3.3v ESP-32 and provides ample current to the motor.
-- We're using 2x HC-SR04 sonar sensors to measure distance from both the left and right walls.
-- The Pololu U3V70A Boost Converter was used because providing sustained voltage to the motor driver is an absolute necessity for achieving consistent performance. U3V70A Provides a constant 12v to the Motor driver regardless of the battery voltage.
-- 2x MP1584 buck converters were used, one for powering all the 5v peripherals and on-board devices and the other one for providing 7.4v to the servo motor.
-- A MPU6050 was used to know the orientation of the robot in real-time. This data is later used to count laps.
-- A 3S 12.6V 1500mAh battery is powering this entire system. We're getting a runtime of average 3 hours.
++  
 
-![brd1](https://github.com/tausif-sama/Bangladesh_Team-Lazy-go/blob/main/others/brd1.jpg.jpg)
-![brd2](https://github.com/tausif-sama/Bangladesh_Team-Lazy-go/blob/main/others/brd2.jpg)
 
 
 ----
@@ -115,39 +103,3 @@ We're using a ready made Ackermann based chassis kit from YF robot and have sign
 We setteled on the YF Robot chassis because it provided a robust platform to work on and featured ackermann steering mechanism. We've deigned and 3D printed some parts which were required for the optimal operation of the robot. 
 
 
-
-
-## 3D Printed parts designed by us
-
-- We've designed a sonar mount which is mounted in the front of the robot where the sonar sensors are mounted at an angle of 20 deg. We've tested this to be the optimal angle for the sonars to detect walls before hand, providing ample time for the bot to react.
-- An elevated and angled mount for the huskylens was designed for the camera to get optimal vision of the track.
-- The wheels were completely 3D printed, except for the tires. After extensive testing, we've found that thin twheels perfom better in cases where precise movement is required.
-- A mounting plate for the veroboard was designed so that the solder joints under the board do not make any contact with the motor.
-
-----
-
-
-# Software Setup
-![img0](https://github.com/tausif-sama/Bangladesh_Team-Lazy-go/blob/main/others/img0.jpg)
-- First we need to install the latest Arduino IDE on our computer from: arduino.cc/en/Main/Software. If you already have an older version, uninstall it and install the latest one again. Otherwise, it may not work.
-
-![img1](https://github.com/tausif-sama/Bangladesh_Team-Lazy-go/blob/main/others/img1.jpg)
-- In your Arduino IDE, go to File > Preferences, and enter the following into the "Additional Board Manager URLs" field, and click OK:
-`https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json`
-
-![img2](https://github.com/tausif-sama/Bangladesh_Team-Lazy-go/blob/main/others/img2.jpg)
-- Open the Arduino Boards Manager: Tools > Board > Boards Manager... and search for ESP32. Press install button for the "ESP32 by Espressif Systems".
-
-![img3](https://github.com/tausif-sama/Bangladesh_Team-Lazy-go/blob/main/others/img3.jpg)
-- Now we try to upload our code to the ESP32. Select your Board in Tools > Board menu (in our case it is the DOIT ESP32 DEVKIT V1).
-
-![img4](https://github.com/tausif-sama/Bangladesh_Team-Lazy-go/blob/main/others/img4.jpg)
-- Select the COM port, and open the sketch.
-
-![img5](https://github.com/tausif-sama/Bangladesh_Team-Lazy-go/blob/main/others/img5.jpg)
-- Press the Upload button in the Arduino IDE. Wait a few seconds while the code compiles and uploads to your board. It should say "Done Uploading" if the upload completes successfully.
-
-![img6](https://github.com/tausif-sama/Bangladesh_Team-Lazy-go/blob/main/others/img6.jpg)
-- Now you can place the robot on the track, power it up, and wait until the front servo centers.
-
-- Press the button and it will start doing the laps.
