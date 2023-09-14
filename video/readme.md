@@ -1,2 +1,1 @@
-Preli: https://youtu.be/eqiJQXP5v_w
-  Final: https://youtu.be/OjkqASLk1qU
+video: https://www.youtube.com/watch?v=kIXk6w5_UkE
