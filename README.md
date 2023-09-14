@@ -26,44 +26,54 @@ This repository contains the engineering materials, software codebase, and docum
 + `others` - other essential photos
 
 ----
+## Part 1 - Program Arrangement and Algorithm Planning:
+Imports and Libraries:
+
+The code starts by importing necessary libraries for both Arduino (Servo) and Raspberry Pi (OpenCV, NumPy, serial communication, and GPIO).
+Variable Initialization:
+
+Various variables and constants are initialized, including pins for motors, ultrasonic sensors (trigPin and echoPin), motor speed, and safe distances for obstacle avoidance.
+Setup Function:
+
+In the setup function, the code initializes the Arduino components, such as servo motor, pins, and serial communication. It also initializes the Raspberry Pi camera using OpenCV.
+Loop Function:
+
+The loop function continuously measures distances from ultrasonic sensors and performs obstacle avoidance.
+----
+##Part 2 - Detecting Run Direction:
+getDistance Function:
+
+This function is responsible for measuring distances using an ultrasonic sensor. It sends a trigger signal, calculates the time it takes for the echo signal to return, and converts this time into a distance measurement.
+moveForward, moveLeft, moveRight Functions:
+
+These functions control the robot's movements: forward, left, and right. They adjust the motor pins and servo angle to navigate the robot accordingly.
+obstacleAvoidance Function:
+
+This function contains the logic for obstacle avoidance. It checks distances in front, left, and right of the robot and determines whether to move forward, turn left, or turn right based on safe distances and detected obstacles.
+----
+##Part 3 - Completing the Run as Fast as Possible:
+Image Processing with Raspberry Pi:
+
+The Raspberry Pi section of the code captures frames from the camera and processes them to detect red and green objects. It uses OpenCV to perform color segmentation and find contours of these objects.
+Centroid Calculation and Distance Estimation:
+
+The code calculates the centroid (center of mass) of detected red and green objects. It also estimates their distances based on apparent size and the focal length of the camera.
+Displaying Object Centroids and Distances:
+
+The code displays the live video feed with object centroids and estimated distances on the screen. It differentiates between red and green objects and displays their distances.
+Serial Communication with Arduino:
+
+If the code detects objects within a certain distance range (0.00 < distance < 0.05), it sends commands ('r' for red and 'g' for green) to the Arduino via serial communication to instruct the robot to take a specific action (e.g., turn left or right).
+Cleanup and Exiting:
+
+The code handles cleanup by releasing the camera and closing OpenCV windows when the 'q' key is pressed.
+This code effectively combines Arduino and Raspberry Pi to create a robot that can autonomously navigate while detecting and responding to objects in its environment. The robot avoids obstacles and follows a path based on the colors of the objects it detects.
 
 
 
-# Program arrangement and Algorithm Planning
 
-The robot is running on an ESP32-based development board called the JRC board locally made in our country to run all the actuators and sense the environment. It is using the Huskylens to see the red/green obstacles as well as the corner lines (blue/orange). An MPU6050 gyroscope and accelerometer sensor are used to detect the orientation of the robot and count laps.
 
-When the robot is first powered on with the battery, it initializes the chip and starts communicating with the Huskylens and IMU sensor. Once it is ready, the servo motor gets centered and it waits for the user to push the button. The code is then divided into three major parts - 
 
-### Part 1 - Detecting run direction:
-
-The first part determines the direction of the robot run. The robot moves slowly through the first straightforward section to ensure it can safely detect the direction of the run with its sonar sensors. Once it detects a large distance (>90cm) from one of the sensors, it marks the direction as “L” - clockwise, or “R”  - anti-clockwise accordingly.
-
-### Part 2 - Completing the run as fast as possible:
-
-In this part, we run a PID loop (1st round) or a proportional+obstacle avoiding code(2nd round) to complete the run as fast as possible. 
-
-### **Wall avoidance:**
-
-In the first round, we only check the sonar on the inner wall side (based on the direction of run detected from Part 1) to run a PID (proportional, integral, derivative) code. The code tries to keep the robot at a fixed distance from the wall while slowing down the rear axle drive motor whenever a turn is initiated.
-To complete this part as fast as possible, we use smart algorithms to detect when the robot has just finished a turning section and is about to enter a straight section. The robot then spins the drive motor at maximum speed for a short period of time (40-50mS) to give the robot a great acceleration or “boost”.
-
-In the 2nd round, however, we decided to disable the boost and changed PID control to just P or proportional to keep the robot centered on the track, which is sufficient at the slow speed of the robot.
-
-### **Obstacle avoidance:**
-
-When the huskylens detects an object, the ESP32 gets the object's color and location in the X and Y axis, as well as its height (to get the distance). The robot then follows the obstacle with an offset. Meaning it follows slightly on the right side of red obstacles, and slightly to the left of green obstacles. And once it reaches a distance of less than 30 cm, it turns the front wheel proportionally to the distance of the object (calculated from height) and the position of the object on the screen's horizontal axis.
-
-### Wall collision protection:
-
-If the robot detects a wall within 8cm of one of the sides, it rotates the servo in the other direction for a few milliseconds to keep the robot from hitting the wall.
-
-### Part 3 - Detecting the end of 3 laps:
-
-The robot equips a gyroscope sensor to measure the yaw angle by integrating the rotational acceleration values on the Z axis over time. Gyroscope sensors are infamous for drift in the angle over time, but our robot runs for such a short time that it does not affect its performance.
-
-When the start button is pressed, the robot is at a zero-degree angle starting position. After each lap of the track, the robot spins 360 degrees. So we can detect the completion of three laps as soon as the robot completes 3x360 or 1080 degrees turn (+/- 20 degrees to compensate for errors). 
-However, the robot is not instantly stopped, since it may not have reached the straightforward section. We start waiting for the Huskylens to detect a blue or orange line in front of it and stop instantly with a short backward pulse to the drive motor (hard break).
 
 ----
 
