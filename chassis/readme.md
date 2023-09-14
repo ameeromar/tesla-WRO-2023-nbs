@@ -1,7 +1,7 @@
 Main Chassis 
 ====
 
-We're using a ready made Ackermann based chassis kit from YF robot and have significantly modified each aspect of the chassis. The chassis base plate is made of Aluminum and the rest of the parts involve brass spacers, acrylic top plates, front articulating axel parts and some other miscellaneous parts.
+We're using a ready made Ackermann based chassis kit from YF robot .
 
 
 ## Chassis files Overview
