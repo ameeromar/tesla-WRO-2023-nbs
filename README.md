@@ -86,7 +86,7 @@ This code effectively combines Arduino and Raspberry Pi to create a robot that c
 
 # Electrical Systems Design
 
-We've carefully selected the best possible parts for our robot after several hundred hours of R&D and have tried to achieve highest possible efficiency and reliability. The electrical systems design is explained in the following paragraph.
+
 
 ## Parts List
 
@@ -103,7 +103,6 @@ We've carefully selected the best possible parts for our robot after several hun
 
 ## Design decisions
 
-+  
 
 
 
@@ -112,7 +111,6 @@ We've carefully selected the best possible parts for our robot after several hun
 
 # Mechanical Design
 
-We're using a ready made Ackermann based chassis kit from YF robot and have significantly modified each aspect of the chassis. The chassis base plate is made of Aluminum and the rest of the parts involve brass spacers, acrylic top plates, front articulating axel parts and some other miscellaneous parts. We've also designed and 3D Printed some parts for making our chassis more practical.
 
 ## Design Decisions
 We setteled on the YF Robot chassis because it provided a robust platform to work on and featured ackermann steering mechanism. We've deigned and 3D printed some parts which were required for the optimal operation of the robot. 
