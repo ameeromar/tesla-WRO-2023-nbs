@@ -15,7 +15,6 @@ We're using a ready made Ackermann based chassis kit from YF robot and have sign
    - `main motor.png`: This shows the placement of the motor and it's mounting mechanism on the baseplate.
    - `servo.png`: This shows the placement of the servo motor and it's mounting mechanism with the linkages.
 
-Please refer to `models` for the 3D Printed Parts.
 
 
 
