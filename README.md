@@ -99,17 +99,6 @@ This code effectively combines Arduino and Raspberry Pi to create a robot that c
 + raspberry cam
 + rc car
 
-## Design decisions
 
-
-
-
-----
-
-
-# Mechanical Design
-
-
-## Design Decisions
 
 
